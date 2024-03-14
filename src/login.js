@@ -31,7 +31,7 @@ const LoginForm = () => {
         });
       } else {
         toast.success('Login Success');
-        setInterval(() => navigate('/home'), 2000);
+        setTimeout(() => navigate('/home'), 2000);
       }
     } catch (err) {
       // console.log(err);
