@@ -142,3 +142,9 @@ button:hover {
     cursor: pointer;
     color: rgb(206, 80, 80);
 }
+
+/*  login error msg */
+
+.errorMessage p{
+    font-size: 25px;
+}

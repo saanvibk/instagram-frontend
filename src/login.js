@@ -2,39 +2,48 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from './assets/ig-logo.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import FlashMessage from 'react-flash-message';
 
 const LoginForm = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  let error = [];
+
+  const fetchData = async () => {
+    try {
+      const data = await fetch('http://localhost:6500/auth/login', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include', // Include credentials (cookies)
+      });
+
+      const status = data.status;
+      const res = await data.json();
+      console.log(res.msg);
+
+      if (status >= 400) {
+        toast.error(res.msg, {
+          // position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        toast.success('Login Success');
+        setInterval(() => navigate('/home'), 2000);
+      }
+    } catch (err) {
+      // console.log(err);
+      toast.error(err.msg, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch('http://localhost:6500/auth/login', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-      credentials: 'include', // Include credentials (cookies)
-    })
-      .then((res) => {
-        console.log(res.status);
-        if (res.status === 401) {
-          console.log('email');
-          const emailError = 'Email is not Registered';
-        }
-
-        if (res.status === 400) {
-          const passwordError = 'Passwor Incorrect';
-        }
-
-        if (res.status === 200) {
-          navigate('/home');
-        }
-      })
-
-      .catch((err) => console.log(err));
+    await fetchData();
   };
 
   return (
@@ -57,7 +66,6 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           className='login-input'
         />
-
         <button type='submit' className='login-button'>
           Log In
         </button>
@@ -68,6 +76,8 @@ const LoginForm = () => {
             Sign up
           </span>
         </p>
+
+        <ToastContainer />
       </form>
     </div>
   );
