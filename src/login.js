@@ -26,18 +26,13 @@ const LoginForm = () => {
       console.log(res.msg);
 
       if (status >= 400) {
-        toast.error(res.msg, {
-          // position: toast.POSITION.TOP_CENTER,
-        });
+        toast.error(res.msg, {});
       } else {
         toast.success('Login Success');
         setTimeout(() => navigate('/home'), 2000);
       }
     } catch (err) {
-      // console.log(err);
-      toast.error(err.msg, {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      toast.error(err.msg, {});
     }
   };
 

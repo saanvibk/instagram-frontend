@@ -20,7 +20,9 @@ const Register = () => {
     })
       .then((res) => {
         console.log(res.status);
-        navigate('/home');
+        if (res.status === 200) {
+          navigate('/home');
+        }
       })
       .catch((err) => {
         console.log(err);
