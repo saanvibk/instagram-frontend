@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './assets/ig-logo.png';
+import logo from '../assets/ig-logo.png';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -81,7 +81,7 @@ const Register = () => {
 
           <p className='loginText'>
             Already have an account?{' '}
-            <span onClick={() => navigate('/login')} className='loginButton'>
+            <span onClick={() => navigate('/')} className='loginButton'>
               Login
             </span>
           </p>

@@ -16,7 +16,7 @@ const HomePage = () => {
       console.log(res.status);
 
       if (res.status === 401) {
-        navigate('/login');
+        navigate('/');
       }
     } catch (error) {
       console.log(error);
@@ -56,6 +56,7 @@ const HomePage = () => {
     <div className='home'>
       <h1>Welcome to home page </h1>
       <button onClick={handleLogout}>Logout</button>
+      <button onClick={() => navigate('/profile')}>Profile</button>
       <ToastContainer />
     </div>
   );

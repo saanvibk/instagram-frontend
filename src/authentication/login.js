@@ -1,7 +1,7 @@
 // LoginForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from './assets/ig-logo.png';
+import logo from '../assets/ig-logo.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import FlashMessage from 'react-flash-message';
@@ -25,11 +25,12 @@ const LoginForm = () => {
       const res = await data.json();
       console.log(res.msg);
 
+      if (status === 200) {
+        toast.success('Login Success');
+        navigate('/home');
+      }
       if (status >= 400) {
         toast.error(res.msg, {});
-      } else {
-        toast.success('Login Success');
-        setTimeout(() => navigate('/home'), 2000);
       }
     } catch (err) {
       toast.error(err.msg, {});

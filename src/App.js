@@ -1,7 +1,8 @@
-import Register from './register';
-import HomePage from './home';
+import Register from './authentication/signup';
+import HomePage from './home/home';
 import { Route, Routes } from 'react-router-dom';
-import LoginForm from './login';
+import LoginForm from './authentication/login';
+import Profile from './profile/profilePage';
 
 const InstagramSignup = () => {
   return (
@@ -10,7 +11,9 @@ const InstagramSignup = () => {
 
       <Route path='/home' element={<HomePage />} />
 
-      <Route path='/login' element={<LoginForm />} />
+      <Route path='/profile' element={<Profile />} />
+
+      <Route path='/' element={<LoginForm />} />
     </Routes>
   );
 };
