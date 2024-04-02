@@ -1,0 +1,105 @@
+.success-box{
+    height: 390px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.done-img{
+    width: 180px;
+    transition: all 4s ease-in-out 1s;
+}
+
+.success-box h2{
+    font-family: sans-serif;
+    color: #002647;
+}
+
+.createPost {
+    max-width: 500px;
+    margin: 10px auto;
+    margin-top: 30px;
+    border: 2px solid rgb(85, 85, 85);
+    border-radius: 5px;
+}
+
+.main-div {
+    border-top: 1px solid rgb(173, 173, 173);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.post-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 7px;
+}
+
+.post-btn {
+    border: none;
+    color: #006cb5;
+    background: none;
+    font-weight: bolder;
+    cursor: pointer;
+    padding: 8px 11px;
+    border-radius: 5px;
+    /* margin: 8px; */
+}
+
+.post-btn:hover{
+    background-color: #0034571c;
+}
+
+.card-header {
+    display: flex;
+}
+
+.card-header>h5 {
+    margin: 0;
+    padding: 16px 0 0 7px;
+        font-family: sans-serif;
+            font-size: 16px;
+            color: #000037;
+}
+
+.card-pic img {
+    width: 38px;
+    border-radius: 30px;
+    height: 38px;
+    object-fit: cover;
+    padding: 5px;
+}
+
+.details {
+    border-top: 1px solid rgb(173, 173, 173);
+}
+
+.caption{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea {
+    width: 90%;
+    border: none;
+    outline: none;
+}
+
+#output {
+    width: 300px;
+    height: 380px;
+    object-fit: cover;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

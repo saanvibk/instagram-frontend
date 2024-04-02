@@ -43,7 +43,7 @@ input[type="password"] {
     border-radius: 5px;
 }
 
-button {
+.login-button, .signup-button {
     width: 100%;
     padding: 10px;
     font-size: 16px;

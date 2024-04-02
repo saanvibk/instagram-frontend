@@ -77,7 +77,10 @@ const Register = () => {
             />
           </div>
 
-          <button type='submit'> Sign Up</button>
+          <button className='signup-button' type='submit'>
+            {' '}
+            Sign Up
+          </button>
 
           <p className='loginText'>
             Already have an account?{' '}

@@ -1,7 +1,9 @@
 .profile-page {
     max-width: 800px;
     margin: 0 auto;
+        margin-top: 30px;
     padding: 20px;
+    font-family: sans-serif;
 }
 
 .profile-header {
@@ -25,6 +27,7 @@
     border-radius: 50%;
     margin-right: 20px;
     object-fit: cover;
+    object-position: top;
 }
 
 .icon-label{
@@ -58,6 +61,7 @@
 
 .profile-stats p {
     margin-right: 20px;
+    padding: 0 5px;
 }
 
 .profile-posts {

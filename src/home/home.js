@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './navbar';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -23,41 +24,16 @@ const HomePage = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      const data = await fetch('http://localhost:6500/auth/logout', {
-        method: 'GET',
-        headers: { 'Content-type': 'application/json' },
-        credentials: 'include', // Include credentials (cookies)
-      });
-      const status = data.status;
-      const res = await data.json();
-      console.log(status, res);
-
-      if (status === 200) {
-        toast.success(res.msg);
-        setTimeout(() => {
-          navigate('/login');
-        }, 3000);
-      }
-      if (status === 401) {
-        toast.error(res.error);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
     <div className='home'>
-      <h1>Welcome to home page </h1>
-      <button onClick={handleLogout}>Logout</button>
-      <button onClick={() => navigate('/profile')}>Profile</button>
+      <Navbar />
+
       <ToastContainer />
+      <h1>Welcome to home page </h1>
     </div>
   );
 };
