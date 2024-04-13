@@ -1,8 +1,16 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { FaCamera } from 'react-icons/fa'; // Import an icon from a library (e.g., react-icons)
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePic = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedFile) {
+      handleUpdateProfile();
+    }
+  }, [selectedFile]);
 
   const handleUpdateProfile = async () => {
     // Create a new FormData object
@@ -10,9 +18,14 @@ const ProfilePic = () => {
 
     // Append the file to the FormData object
     formData.append('file', selectedFile);
-    console.log(selectedFile, 'file');
 
+    console.log('file', selectedFile);
     console.log(formData);
+
+    if (selectedFile == '') {
+      return;
+    }
+
     try {
       // Send a POST request with Fetch API
       const response = await fetch(
@@ -25,21 +38,18 @@ const ProfilePic = () => {
       );
 
       // Handle response
-      console.log(response);
-      if (response.ok) {
+      if (response.status === 401) {
+        navigate('/');
+      }
+      if (response.status === 200) {
         const data = await response.json();
         console.log('File uploaded successfully:', data);
       } else {
-        console.error('Failed to upload file:', response.statusText);
+        console.error('Failed to upload profile picture:', response.statusText);
       }
     } catch (error) {
       console.error('Error uploading file:', error);
     }
-  };
-  const handleFileChange = async (e) => {
-    setSelectedFile(e.target.files[0]);
-
-    handleUpdateProfile();
   };
 
   return (
@@ -51,7 +61,9 @@ const ProfilePic = () => {
         type='file'
         id='fileInput'
         accept='image/*' // Specify accepted file types if needed
-        onChange={handleFileChange}
+        onChange={(e) => {
+          setSelectedFile(e.target.files[0]);
+        }}
         style={{ display: 'none' }} // Hide the file input
       />
     </>

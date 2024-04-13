@@ -1,18 +1,19 @@
 import { React, useEffect, useState } from 'react';
-// import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import './profilePage.css';
 import ProfilePic from './profilePic';
 import Navbar from '../home/navbar';
+import config from '../config';
+import Posts from './Posts';
 
 const Profile = () => {
   const [user, setUser] = useState('');
+
   const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
-      const res = await fetch('http://localhost:6500/user/profile', {
+      const res = await fetch(`${config.backendURL}/user/profile`, {
         method: 'GET',
         headers: { 'Content-type': 'application/json' },
         credentials: 'include', // Include credentials (cookies)
@@ -40,7 +41,14 @@ const Profile = () => {
       <div className='profile-page'>
         <div className='profile-header'>
           <div className='profile-picture'>
-            <img src={user.profilePic} alt='Profile' />
+            <img
+              src={
+                user.profilePic
+                  ? user.profilePic
+                  : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy7-_ejhfjun3WS6ya6cX5xO38IAZcA5S8em6u-wQHQwrijW4jrI57-NDbbszUJXhZjbo&usqp=CAU'
+              }
+              alt='Profile'
+            />
             <ProfilePic />
           </div>
           <div className='profile-info'>
@@ -54,7 +62,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className='profile-posts'>{/* Render user's posts */}</div>
+        <div className='profile-posts'>
+          <Posts />
+        </div>
       </div>
     </>
   );

@@ -38,10 +38,15 @@ const Navbar = () => {
     <div className='navbar'>
       <img src={logo} alt='' />
       <ul className='nav-menu'>
+        <Link to='/home'>
+          <li>Home</li>
+        </Link>
         <Link to='/profile'>
           <li>Profile</li>
         </Link>
-        <Link to='/createPost'>Create Post</Link>
+        <Link to='/createPost'>
+          <li>Create post</li>
+        </Link>
       </ul>
       <button className='primaryBtn' onClick={() => fetchLogout()}>
         Log Out

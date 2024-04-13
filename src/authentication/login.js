@@ -1,10 +1,8 @@
-// LoginForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/ig-logo.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import FlashMessage from 'react-flash-message';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -12,7 +10,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const fetchData = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const data = await fetch('http://localhost:6500/auth/login', {
         method: 'POST',
@@ -35,11 +34,6 @@ const LoginForm = () => {
     } catch (err) {
       toast.error(err.msg, {});
     }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await fetchData();
   };
 
   return (

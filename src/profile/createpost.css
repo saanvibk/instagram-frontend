@@ -75,6 +75,7 @@
     height: 38px;
     object-fit: cover;
     padding: 5px;
+    object-position: top;
 }
 
 .details {
