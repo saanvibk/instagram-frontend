@@ -13,6 +13,7 @@
 
 .card-header {
     display: flex;
+    padding: 10px;
 }
 
 .card-header>h5 {
@@ -89,12 +90,12 @@
 
 .container {
     display: flex;
-    width: 75%;
+    width: 80%;
     background-color: white;
     position: absolute;
     top: 10%;
     left: 10%;
-    height: 500px;
+    height: 560px;
 }
 
 .postPic {
@@ -121,6 +122,7 @@
     flex-grow: 5;
     text-align: left;
     margin-left: 10px;
+    overflow: auto;
 }
 
 .close-comment {
