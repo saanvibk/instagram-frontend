@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import LoginForm from './authentication/login';
 import Profile from './profile/profilePage';
 import CreatePost from './profile/CreatePost';
+import ViewProfile from './profile/ViewProfile';
 
 const InstagramSignup = () => {
   return (
@@ -17,6 +18,8 @@ const InstagramSignup = () => {
       <Route path='/profile' element={<Profile />} />
 
       <Route path='/createPost' element={<CreatePost />} />
+
+      <Route path='/viewProfile' element={<ViewProfile />} />
     </Routes>
   );
 };

@@ -1,7 +1,7 @@
 .profile-page {
     max-width: 800px;
     margin: 0 auto;
-        margin-top: 30px;
+    margin-top: 30px;
     padding: 20px;
     font-family: sans-serif;
 }
@@ -12,13 +12,19 @@
     position: relative;
 }
 
+.profile-info-header{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .profile-picture{
     display: flex;
     flex-direction: column;
 }
 
 .profileInput{
-        margin-top: 20px;
+    margin-top: 20px;
 }
 
 .profile-picture img {

@@ -28,6 +28,7 @@ const HomePage = () => {
         const data = await res.json();
         setData(data.posts);
         setUserID(data.user.id);
+        console.log(userID);
       }
     } catch (error) {
       console.log(error);

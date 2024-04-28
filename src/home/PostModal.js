@@ -9,6 +9,8 @@ function PostModal({
   likePost,
   unLikePost,
   toggleComment,
+  liked,
+  likes,
 }) {
   return (
     <div>
@@ -57,23 +59,33 @@ function PostModal({
 
               {/* card content */}
               <div className='card-content'>
-                <span
-                  className='material-symbols-outlined material-symbols-outlined-red'
-                  onClick={() => {
-                    unLikePost(item._id);
-                  }}
-                >
-                  favorite
-                </span>
-                <span
-                  className='material-symbols-outlined'
-                  onClick={() => {
-                    likePost(item._id);
-                  }}
-                >
-                  favorite
-                </span>
-                <p>{item.caption}</p>
+                {liked ? (
+                  <span
+                    className='material-symbols-outlined material-symbols-outlined-red'
+                    onClick={() => {
+                      unLikePost(item._id);
+                    }}
+                  >
+                    favorite
+                  </span>
+                ) : (
+                  <span
+                    className='material-symbols-outlined'
+                    onClick={() => {
+                      likePost(item._id);
+                    }}
+                  >
+                    favorite
+                  </span>
+                )}
+                <p>{likes} Likes</p>
+
+                <p>
+                  <b style={{ marginRight: '5px' }}>
+                    {item.postedBy.username}{' '}
+                  </b>
+                  <span>{item.caption}</span>
+                </p>
               </div>
 
               {/* add Comment */}

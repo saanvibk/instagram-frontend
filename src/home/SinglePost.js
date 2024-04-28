@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import PostModal from './PostModal';
+import ViewProfile from '../profile/ViewProfile';
 
 function SinglePost({ post, userID }) {
   const navigate = useNavigate();
@@ -90,77 +91,91 @@ function SinglePost({ post, userID }) {
 
   return (
     <div>
-      <div key={post._id} className='card'>
-        {/* card header */}
-        <div className='card-header'>
-          <div className='card-pic'>
-            <img src={post.postedBy.profilePic} alt='' />
+      {post && (
+        <div key={post._id} className='card'>
+          {/* card header */}
+          <div className='card-header'>
+            <div className='card-pic'>
+              <img
+                src={post.postedBy.profilePic}
+                alt=''
+                style={{ cursor: 'pointer' }}
+                onClick={() =>
+                  navigate('/viewProfile', { state: post.postedBy })
+                }
+              />
+            </div>
+            <h5
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate('/viewProfile', { state: post.postedBy })}
+            >
+              {post.postedBy.username}
+            </h5>
           </div>
-          <h5>{post.postedBy.username}</h5>
-        </div>
-        {/* card image */}
-        <div className='card-image'>
-          <img src={post.post} alt='' />
-        </div>
+          {/* card image */}
+          <div className='card-image'>
+            <img src={post.post} alt='' />
+          </div>
 
-        {/* card content */}
+          {/* card content */}
 
-        <div className='card-content'>
-          {liked ? (
-            <span
-              className='material-symbols-outlined material-symbols-outlined-red'
-              onClick={() => {
-                unLikePost(post._id);
-              }}
-            >
-              favorite
-            </span>
-          ) : (
-            <span
-              className='material-symbols-outlined'
-              onClick={() => {
-                likePost(post._id);
-              }}
-            >
-              favorite
-            </span>
-          )}
-          <p>{likes} Likes</p>
+          <div className='card-content'>
+            {liked ? (
+              <span
+                className='material-symbols-outlined material-symbols-outlined-red'
+                onClick={() => {
+                  unLikePost(post._id);
+                }}
+              >
+                favorite
+              </span>
+            ) : (
+              <span
+                className='material-symbols-outlined'
+                onClick={() => {
+                  likePost(post._id);
+                }}
+              >
+                favorite
+              </span>
+            )}
+            <p>{likes} Likes</p>
 
-          <p>
-            <b style={{ marginRight: '5px' }}>{post.postedBy.username} </b>{' '}
-            <span>{post.caption}</span>
-            <p
-              style={{ fontWeight: 'bold', cursor: 'pointer' }}
-              onClick={() => {
-                toggleComment(post);
-              }}
-            >
-              View all comments
+            <p>
+              <b style={{ marginRight: '5px' }}>{post.postedBy.username} </b>{' '}
+              <span>{post.caption}</span>
+              <p
+                style={{ fontWeight: 'bold', cursor: 'pointer' }}
+                onClick={() => {
+                  toggleComment(post);
+                }}
+              >
+                View all comments
+              </p>
             </p>
-          </p>
-        </div>
+          </div>
 
-        {/* add Comment */}
-        <div className='add-comment'>
-          <input
-            type='text'
-            placeholder='Add a comment'
-            value={comment}
-            onChange={(e) => {
-              setComment(e.target.value);
-            }}
-          />
-          <button
-            className='comment'
-            onClick={() => {
-              makeComment(post._id);
-            }}
-          >
-            Post
-          </button>
+          {/* add Comment */}
+          <div className='add-comment'>
+            <input
+              type='text'
+              placeholder='Add a comment'
+              value={comment}
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
+            />
+            <button
+              className='comment'
+              onClick={() => {
+                makeComment(post._id);
+              }}
+            >
+              Post
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       <PostModal
         show={show}
@@ -171,6 +186,8 @@ function SinglePost({ post, userID }) {
         unLikePost={unLikePost}
         makeComment={makeComment}
         toggleComment={toggleComment}
+        likes={likes}
+        liked={liked}
       />
     </div>
   );

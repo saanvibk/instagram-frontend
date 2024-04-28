@@ -7,7 +7,7 @@ import config from '../config';
 import Posts from './Posts';
 
 const Profile = () => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState([]);
   const [posts, setPosts] = useState([]);
 
   const navigate = useNavigate();
@@ -34,23 +34,8 @@ const Profile = () => {
     }
   };
 
-  const fetchPosts = async () => {
-    const data = await fetch(`${config.backendURL}/post/userPosts`, {
-      method: 'GET',
-      headers: { 'Content-type': 'application/json' },
-      credentials: 'include', // Include credentials (cookies)
-    });
-
-    if (data.status === 200) {
-      const response = await data.json();
-      console.log(response.userPosts);
-      setPosts(response.userPosts);
-    }
-  };
-
   useEffect(() => {
     fetchData();
-    fetchPosts();
   }, []);
 
   return (
