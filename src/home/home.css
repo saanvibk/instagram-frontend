@@ -96,6 +96,8 @@
     top: 10%;
     left: 10%;
     height: 560px;
+    border-radius: 15px !important;
+
 }
 
 .postPic {
